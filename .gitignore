@@ -196,3 +196,11 @@ scripts/activity-labels/results/
 # Chrome user-data directories a Lighthouse run leaves in the repository root when the browser
 # is handed a Windows profile path from WSL: the whole path arrives as one directory name.
 /*lighthouse.[0-9]*/
+
+# graphify machine-local files (graph.json/graph.html/GRAPH_REPORT.md are tracked;
+# these are absolute paths, AST cache and re-anchoring data specific to this machine)
+graphify-out/.graphify_root
+graphify-out/.graphify_analysis.json
+graphify-out/manifest.json
+graphify-out/cache/
+
