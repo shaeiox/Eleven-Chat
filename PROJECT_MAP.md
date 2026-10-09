@@ -252,7 +252,7 @@ Other schemas present (each thinner, see `schema/index.ts` for the full ~45-mode
 
 ### Role/permission system
 
-String `role` on User → **Role** document with per-category boolean permission flags, checked via `hasCapability`/`requireCapability` middleware and a separate bitmask **resource-ACL** system (`aclEntry` model + `canAccessResource` middleware: 1=view/2=edit/4=delete/8=share) for per-object grants. A blunt `checkAdmin` gate exists separately for `/api/admin/*`.
+String `role` on User → **Role** document with per-category boolean permission flags, checked via `hasCapability`/`requireCapability` middleware and a separate bitmask **resource-ACL** system (`aclEntry` model + `canAccessResource` middleware: 1=view/2=edit/4=delete/8=share) for per-object grants. **Correction (2026-10, verified via `docs/developer-guide/`):** `checkAdmin` (`api/server/middleware/roles/admin.js`) is defined but called by zero routes — every `/api/admin/*` route actually gates on `requireCapability(SystemCapabilities.ACCESS_ADMIN)` plus finer-grained flags, not a separate blunt gate. See `docs/developer-guide/08-auth-security.md` §5 and `docs/developer-guide/13-architecture-decisions-and-limitations.md`.
 
 ### Session management
 
